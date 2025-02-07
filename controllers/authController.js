@@ -4,7 +4,7 @@ import axios from "axios";
 
 export async function createGoogleAuthUrl(req, res) {
     const redirectUri = process.env.ENVIRONMENT == "production" ? "https://url-shortener-app-2b7v.onrender.com/auth/google/callback" : "http://localhost:5000/auth/google/callback";
-    const googleAuthURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.GOOGLE_CLIENT_ID}&redirect_uri=${redirectUri}&response_type=code&scope=email profile`;
+    const googleAuthURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.GOOGLE_CLIENT_ID}&redirect_uri=${redirectUri}&response_type=code&scope=email`;
     res.json({ message: "Google auth url generated successfully", googleAuthURL  });
     // res.redirect(googleAuthURL);
 }
