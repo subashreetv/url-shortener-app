@@ -18,13 +18,14 @@ export async function googleAuthCallback(req, res) {
   
     try {
       // Step 3: Exchange Authorization Code for Access Token
+      const redirectUri = process.env.ENVIRONMENT == "production" ? "https://url-shortener-app-2b7v.onrender.com/auth/google/callback" : "http://localhost:5000/auth/google/callback";
       const tokenResponse = await axios.post("https://oauth2.googleapis.com/token", null, {
         params: {
           client_id: process.env.GOOGLE_CLIENT_ID,
           client_secret: process.env.GOOGLE_CLIENT_SECRET,
           code,
           grant_type: "authorization_code",
-          redirect_uri: "http://localhost:5000/auth/google/callback",
+          redirect_uri: redirectUri,
         },
       });
   
